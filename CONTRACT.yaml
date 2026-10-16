@@ -45,23 +45,23 @@ tasks:
   - id: H-02
     title: Two or three test datasets plus a codebook
     points: "10 - Tool Documentation: 2-3 working test datasets (5), codebook and README for the data (5)"
-    status: todo
-    owner: ""
-    started_at: ""
+    status: done
+    owner: "claude implementer"
+    started_at: "2026-10-16 16:30"
     owns: ["data/"]
     definition_of_done: >
       ls data/*.csv lists 2 or 3 files (e.g. in control, planted shift, edge
       case), and data/README.md names every one of them and describes every
       column with units and how the data would be collected for real.
-    result: ""
+    result: "3 seeded CSVs (telemetry 6000 rows, coupons 150, edge_case 6) + codebook; B-27 O2 ramp from layer 120 and low-yield coupons planted"
 
   - id: H-03
     title: Core QC statistic as one plain, tested function
     points: "25 - Tool Implementation: valid analyses relevant to quality control in R or Python"
-    status: todo
-    owner: ""
-    started_at: ""
-    owns: ["app/qc.py", "app/qc.R", "app/requirements.txt", "tests/"]
+    status: done
+    owner: "claude implementer"
+    started_at: "2026-10-16 16:30"
+    owns: ["app/qc.R", "tests/"]
     notes: >
       Load the stats-first-steering skill before writing any statistics. Plain
       inputs (a data frame or vector), plain outputs (numbers), no framework.
@@ -69,7 +69,7 @@ tasks:
       pytest tests (Python) or Rscript -e "testthat::test_dir('tests')" (R)
       passes, including one test that reproduces the SPEC section 4
       known-answer check and one degenerate case (constant data or n = 1).
-    result: ""
+    result: "app/qc.R: Cpk/Ppk one-sided, X-bar/S, Nelson 1-4, EWMA, Shapiro-Wilk; testthat PASS 60, FAIL 0; known answers + qcc cross-check; stats-reviewer PASS"
 
   - id: H-04
     title: Working tool - one demo copied to app/ and wired to the H-03 function
