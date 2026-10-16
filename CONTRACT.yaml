@@ -22,15 +22,15 @@
 # Delete the paths you do not use.
 
 spec: SPEC.md
-updated: ""
+updated: "2026-10-16"
 
 tasks:
   - id: H-01
     title: Fill in every FILL IN line in SPEC.md
     points: "15 - Tool Design: scope matches a prompt (5), clear user and use case (5), minimal inputs (5)"
-    status: todo
-    owner: ""
-    started_at: ""
+    status: done
+    owner: "Madeline + claude"
+    started_at: "2026-10-16"
     owns: ["SPEC.md"]
     notes: >
       Do this together, out loud, right after kickoff. The prompts are in
@@ -40,7 +40,7 @@ tasks:
       grep -c "FILL IN[.,]" SPEC.md prints 0 (it counts only the blanks,
       not the instructions at the top), and every teammate can say the
       method sentence in SPEC section 4 without reading it.
-    result: ""
+    result: "SPEC filled for AeroPrint SPC (DL Challenge 1): Cpk/Ppk one-sided, X-bar/S + Nelson 1-4, EWMA; hand-worked known answers; grep prints 0"
 
   - id: H-02
     title: Two or three test datasets plus a codebook
