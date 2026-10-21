@@ -165,3 +165,18 @@ test_that("NA values are dropped with a warning and the answer is unchanged", {
   expect_warning(l <- xbar_s_limits(y2, b2), "missing")
   expect_equal(l$xbar, xbar_s_limits(yield, build)$xbar)
 })
+
+test_that("abort_index fires on the k-th point of the first run of k out points", {
+  out <- c(FALSE, TRUE, FALSE, TRUE, TRUE, TRUE, TRUE, TRUE, TRUE)
+  expect_equal(abort_index(out, k = 5), 8)   # run starts at 4, 5th out point is 8
+  expect_equal(abort_index(out, k = 1), 2)
+  # a run of 4 is not enough
+  expect_true(is.na(abort_index(c(TRUE, TRUE, TRUE, TRUE, FALSE), k = 5)))
+})
+
+test_that("abort_index degenerate cases", {
+  expect_true(is.na(abort_index(rep(FALSE, 200))))
+  expect_true(is.na(abort_index(logical(0))))
+  expect_error(abort_index(c(TRUE, NA)), "missing")
+  expect_error(abort_index(TRUE, k = 0), "at least 1")
+})

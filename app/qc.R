@@ -235,6 +235,21 @@ ewma_chart <- function(x, mu0, sigma, lambda = 0.2, L = 3) {
              out = z > ucl | z < lcl)
 }
 
+#' abort_index(): run rule on EWMA out flags. One flagged layer in a 200-layer
+#'   build is often a false alarm at L = 3, so abort only when k consecutive
+#'   points are out. Returns the index of the k-th point of the first such run,
+#'   or NA if there is none.
+abort_index <- function(out, k = 5) {
+  if (k < 1) stop("k must be at least 1")
+  if (anyNA(out)) stop("out contains missing values")
+  run <- 0L
+  for (i in seq_along(out)) {
+    run <- if (out[i]) run + 1L else 0L
+    if (run >= k) return(i)
+  }
+  NA_integer_
+}
+
 # ---------------------------------------------------------------------------
 # Normality
 # ---------------------------------------------------------------------------

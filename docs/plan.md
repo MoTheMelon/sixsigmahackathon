@@ -32,13 +32,14 @@ Statistics first, then the tool, then the page. Every formula lives in `app/qc.R
 6. **H-05 demo** (`demo/`), ~1 h. Walk through each CSV: numbers shown, chart, how to read it.
 7. **H-07 README** (`README.md`, `app/README.md`), ~1 h. Every input, function, one-command run, live URL.
 8. **H-08 second half**: fresh clone, `testme` and tests pass, `git grep -i api_key` clean, Devpost submitted.
-9. **Stretch (needs a new task H-09, agreed first)**: page 3 table of non-conforming builds + O2 vs yield scatter.
+9. **Stretch (needs a new task H-10, agreed first)**: page 3 table of non-conforming builds + O2 vs yield scatter.
 
 ## Decisions (2026-10-16)
 - Scope: capability + SPC (X-bar/S, EWMA, Nelson 1-4). Lasso/RF, PDF report, live feed out of scope.
 - One-sided specs: report Cpk and Ppk; Cp/Pp shown as "n/a: one-sided spec". No invented USL.
 - Control limits from a Phase I baseline (first 20 builds), Nelson rules 1-4 only.
 - Capability banner reads "NOT INTERPRETABLE" when any Nelson rule fires on the X-bar/S chart.
+- Abort rule (H-09): EWMA L = 3 kept for the chart; ABORT only after 5 consecutive out layers (`abort_index`). Badge RED also when fleet Cpk < 1.33.
 - Stack: R Shiny + bslib + plotly + DT; statistics in base R; `qcc` only as a test cross-check.
 
 ## Risks
