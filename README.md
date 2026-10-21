@@ -114,8 +114,9 @@ All functions are plain base R. Errors are `stop()` messages; the app catches th
 
 **SPC Monitor (page 1)**
 - Controls: *Printer* (All, A-D) filters the *Build* list (default B-27); *Export flagged layer log* downloads a CSV (build, layer, variable, x, z, ucl, lcl) of out-of-control layers.
-- KPI cards: builds loaded; fleet yield Cpk (all builds, LSL 1050); active alarms with a badge.
-- Badge: **RED** if the build meets the abort rule, any yield build breaks a Nelson rule, or fleet Cpk < 1.33; **AMBER** if any EWMA point is out or fleet Cpk < 1.67 (or is NA); otherwise **GREEN**.
+- KPI cards: builds loaded; fleet yield Cpk (all builds, LSL 1050); two status badges.
+- **This build** badge: **RED** if the selected build meets the abort rule (5 EWMA out layers in a row); **AMBER** if it has any single EWMA out point; otherwise **GREEN**. On the bundled data: 12 GREEN, 17 AMBER, 1 RED (B-27).
+- **Fleet** badge: **RED** if any yield build breaks a Nelson rule or fleet Cpk < 1.33; **AMBER** if fleet Cpk < 1.67 (or is NA); otherwise **GREEN**.
 - Headline: "ABORT BUILD: NO", or "ABORT BUILD: YES - 5 consecutive out-of-control layers ending at layer N (O2 or bed temp)".
 - Two EWMA charts (O2 ppm, bed temp deg C) with UCL/LCL, the centre line mu0, and out points in red.
 

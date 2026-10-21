@@ -36,7 +36,7 @@ What you see (screenshot: `page1_b27.png`):
   layer 135. Layers 135 to 139 are five reds in a row, so the abort fires at layer 139. In total 66 O2 layers are red.
 - The bed temp chart: 1 red point (layer 93) and no abort. That is a chance alarm.
 - Mean O2 is 151.0 ppm for layers 1-119 and 283.5 ppm for layers 180-200.
-- The alarm card says **Active alarms: RED**, with a count of 68 (67 EWMA out points in this build plus 1 yield build with a Nelson flag).
+- The **This build: B-27** card is **RED** (67 EWMA out-of-control layers; the abort rule is met). The **Fleet** card is **RED** too (1 yield build with a Nelson flag; fleet Cpk 1.675).
 
 ![Page 1, build B-27](page1_b27.png)
 
@@ -52,8 +52,10 @@ What you see:
 - O2 has 3 red layers (13, 15, 16) but never 5 in a row. Bed temp has 0 red layers.
 - Chance alarms like this are normal. They are the reason for the 5-in-a-row rule: with the rule, 0 of the 29
   clean builds abort. Other clean builds with a lone red point include B-02 (O2) and B-05, B-06, B-07, B-10 (bed temp).
-- The alarm card also reads RED. That is because it counts fleet-level alarms too: the yield Nelson flag on B-27
-  (page 2) and the fleet Cpk are shown on every build. The abort line is the build-level answer.
+- The **This build: B-01** card is **AMBER**: 3 EWMA out-of-control layers, but the abort needs 5 in a row.
+  Across all 30 builds this card is GREEN for 12, AMBER for 17 and RED only for B-27.
+- The **Fleet** card stays **RED** on every build, because B-27 breaks a Nelson rule on yield (page 2).
+  It is about the whole fleet, not the build you picked.
 
 **How to read this:** a lone red point does not mean abort. Look at the **ABORT BUILD** line, not at one dot.
 

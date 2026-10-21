@@ -170,3 +170,17 @@ tasks:
       known-answer and degenerate tests, and the app aborts B-27 only (layer 139)
       across all 30 builds.
     result: "abort_index(): abort after 5 consecutive EWMA out layers; 0/29 clean builds abort, B-27 aborts at layer 139 (O2); tests PASS 67; stats-reviewer PASS"
+
+  - id: H-10
+    title: Split the page-1 alarm badge into "This build" and "Fleet"
+    points: "protects the 10 demo points - a healthy build showed a RED badge next to ABORT BUILD NO"
+    status: in_progress
+    owner: "Madeline + claude"
+    started_at: "2026-10-21"
+    owns: ["app/app.R", "app/manifest.json", "README.md", "demo/", "docs/plan.md"]
+    notes: >
+      Agreed by Madeline 2026-10-21 (option b).
+    definition_of_done: >
+      testthat passes; across all 30 builds the This build badge is RED only for
+      B-27; the live page shows both badges.
+    result: ""

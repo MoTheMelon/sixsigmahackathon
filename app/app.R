@@ -84,10 +84,11 @@ ui <- page_navbar(
         downloadButton("dl_flags", "Export flagged layer log")
       ),
       layout_columns(
-        col_widths = c(4, 4, 4),
+        col_widths = c(3, 3, 3, 3), fill = FALSE,
         uiOutput("kpi_builds"),
         uiOutput("kpi_cpk"),
-        uiOutput("kpi_alarm")
+        uiOutput("kpi_build_alarm"),
+        uiOutput("kpi_fleet_alarm")
       ),
       h4(textOutput("abort_text")),
       layout_columns(
@@ -218,16 +219,25 @@ server <- function(input, output, session) {
     sum(vapply(ewma_res(), function(r) if (is.null(r$value)) 0L else sum(r$value$out), integer(1)))
   })
 
-  alarm <- reactive({
+  badge <- function(red, amber) {
+    list(level = if (red) "RED" else if (amber) "AMBER" else "GREEN",
+         theme = if (red) "danger" else if (amber) "warning" else "success")
+  }
+
+  # this build: RED = abort rule met; AMBER = a single EWMA out point (can be chance)
+  build_alarm <- reactive({
+    b <- badge(!is.null(first_flag()), n_ewma_out() > 0)
+    b$why <- sprintf("%d EWMA out-of-control layer(s); abort needs %d in a row", n_ewma_out(), ABORT_RUN)
+    b
+  })
+
+  # fleet: RED = a yield build breaks a Nelson rule or fleet Cpk < 1.33; AMBER = Cpk < 1.67 or unknown
+  fleet_alarm <- reactive({
     n_nelson <- if (is.null(yield_chart()$value)) 0L else length(yield_chart()$value$flagged)
     cpk <- if (is.null(fleet()$value)) NA_real_ else fleet()$value$cpk
-    red <- !is.null(first_flag()) || n_nelson > 0 || (!is.na(cpk) && cpk < 1.33)
-    amber <- n_ewma_out() > 0 || is.na(cpk) || cpk < 1.67
-    list(count = n_ewma_out() + n_nelson,
-         level = if (red) "RED" else if (amber) "AMBER" else "GREEN",
-         theme = if (red) "danger" else if (amber) "warning" else "success",
-         why = sprintf("%d EWMA out points in this build, %d yield build(s) with a Nelson flag, fleet Cpk %s",
-                       n_ewma_out(), n_nelson, fmt(cpk, 3)))
+    b <- badge(n_nelson > 0 || (!is.na(cpk) && cpk < 1.33), is.na(cpk) || cpk < 1.67)
+    b$why <- sprintf("%d yield build(s) with a Nelson flag; fleet Cpk %s", n_nelson, fmt(cpk, 3))
+    b
   })
 
   output$kpi_builds <- renderUI(
@@ -236,13 +246,17 @@ server <- function(input, output, session) {
   )
   output$kpi_cpk <- renderUI({
     f <- fleet()
-    value_box("Fleet Cpk (yield, all builds, LSL 1050)",
+    value_box("Fleet Cpk (yield, LSL 1050)",
               if (is.null(f$value)) "NA" else fmt(f$value$cpk, 3),
               p(class = "small", if (is.null(f$value)) f$error else f$value$message))
   })
-  output$kpi_alarm <- renderUI({
-    a <- alarm()
-    value_box(paste("Active alarms:", a$level), a$count, p(class = "small", a$why), theme = a$theme)
+  output$kpi_build_alarm <- renderUI({
+    a <- build_alarm()
+    value_box(paste0("This build (", input$build, ")"), a$level, p(class = "small", a$why), theme = a$theme)
+  })
+  output$kpi_fleet_alarm <- renderUI({
+    a <- fleet_alarm()
+    value_box("Fleet", a$level, p(class = "small", a$why), theme = a$theme)
   })
 
   output$abort_text <- renderText({
