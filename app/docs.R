@@ -112,7 +112,7 @@ docs_panel <- function() {
 
       h3("Who made this", class = "mt-4"),
       p(strong("Madeline Ortiz"), " (GitHub ",
-        tags$a("@MoTheMelon", href = "https://github.com/MoTheMelon", target = "_blank"), "), ",
+        tags$a("@MoTheMelon", href = "https://github.com/MoTheMelon", target = "_blank", .noWS = "after"), "), ",
         "for the Cornell University Systems Engineering Six Sigma Hackathon: ",
         "Virtual DL Challenge 1, \"Industrial Systems: 3D Printing for Aerospace\"."),
       p("Source code, tests and data: ", tags$a(REPO_URL, href = REPO_URL, target = "_blank"), "."),

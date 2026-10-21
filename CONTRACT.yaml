@@ -188,7 +188,7 @@ tasks:
   - id: H-11
     title: In-app Docs tab (how to use, how to read, the math, who made it)
     points: "10 - Tool Documentation: excellent, easy-to-follow documentation (organizer reminder: in-app docs + who made it)"
-    status: in_progress
+    status: done
     owner: "Madeline + claude"
     started_at: "2026-10-21"
     owns: ["app/docs.R", "app/app.R", "app/manifest.json", "README.md", "docs/plan.md", "demo/"]
@@ -198,4 +198,4 @@ tasks:
     definition_of_done: >
       testthat passes; the live URL shows a Docs tab with quick start, how to
       read each output, formulas, assumptions and the credit line.
-    result: ""
+    result: "Docs tab live (logged out): quick start, how to read each output, formulas incl. known answer, assumptions, credit Madeline Ortiz @MoTheMelon; tests PASS 67"
