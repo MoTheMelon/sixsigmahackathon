@@ -91,16 +91,16 @@ tasks:
   - id: H-05
     title: Demonstration of the tool on every test dataset
     points: "10 - Tool Design: a clear demonstration of the tool, using test datasets"
-    status: todo
-    owner: ""
-    started_at: ""
-    owns: ["demo/", "app/frontend/"]
+    status: done
+    owner: "claude implementer"
+    started_at: "2026-10-21 18:24"
+    owns: ["demo/"]
     definition_of_done: >
       demo/README.md walks through each data/ CSV with the exact command or
       URL to run, the numbers or chart the tool shows, and a one-line "how to
       read this"; a teammate who did not write it follows it and gets the same
       numbers.
-    result: ""
+    result: "demo/README.md walks telemetry, coupons, edge_case on the live URL; every number from Rscript demo/run_demo.R; 3 live screenshots; edge upload verified live"
 
   - id: H-06
     title: Deploy to the course Posit Connect server
@@ -125,9 +125,9 @@ tasks:
   - id: H-07
     title: README and function documentation
     points: "10 - Tool Documentation: excellent, easy-to-follow documentation"
-    status: todo
-    owner: ""
-    started_at: ""
+    status: done
+    owner: "claude implementer"
+    started_at: "2026-10-21"
     owns: ["README.md", "app/README.md"]
     notes: >
       Replace the hackathon README.md with your tool's README; the event
@@ -137,7 +137,7 @@ tasks:
       how each function or endpoint works, how to run it in one command, the
       live URL, and links demo/README.md. A teammate who did not write the
       code follows it from a fresh clone and it works.
-    result: ""
+    result: "README.md for judges: live URL, one-command run, inputs, formulas, function table, assumptions, tests, deploy, citations; app/README.md tidied"
 
   - id: H-08
     title: Reproducible public repo, submitted on Devpost
