@@ -10,6 +10,7 @@ library(plotly)
 # both set the working directory to the folder that holds app.R.
 source("qc.R")
 source("helpers.R")
+source("docs.R")
 
 DEFAULT_COUPONS <- "data/coupons.csv"
 DEFAULT_TELEMETRY <- "data/telemetry.csv"
@@ -131,7 +132,9 @@ ui <- page_navbar(
              how_to("this watches spread inside a build; a point above the UCL means a build was unusually scattered."))
       )
     )
-  )
+  ),
+
+  docs_panel()
 )
 
 # --------------------------------------------------------------- server ----

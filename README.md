@@ -127,6 +127,10 @@ All functions are plain base R. Errors are `stop()` messages; the app catches th
 
 The sidebar on both pages uploads your own coupons or telemetry CSV, or resets to the bundled data.
 
+**Docs (page 3)**
+- In-app help: what the tool is for, a quick start, the CSV columns, how to read every output, the formulas and
+  assumptions (collapsible), and who made it. Text only, in `app/docs.R`.
+
 ## 7. Test datasets (details in [data/README.md](data/README.md))
 
 - `data/telemetry.csv`: 30 builds x 200 layers; B-27 has a planted O2 ramp from layer 120 (EWMA catches it).

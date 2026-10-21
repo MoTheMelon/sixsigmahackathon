@@ -32,7 +32,7 @@ Statistics first, then the tool, then the page. Every formula lives in `app/qc.R
 6. **H-05 demo** (`demo/`), ~1 h. Walk through each CSV: numbers shown, chart, how to read it.
 7. **H-07 README** (`README.md`, `app/README.md`), ~1 h. Every input, function, one-command run, live URL.
 8. **H-08 second half**: fresh clone, `testme` and tests pass, `git grep -i api_key` clean, Devpost submitted.
-9. **Stretch (needs a new task H-11, agreed first)**: page 3 table of non-conforming builds + O2 vs yield scatter.
+9. **Stretch (needs a new task H-12, agreed first)**: page 3 table of non-conforming builds + O2 vs yield scatter.
 
 ## Decisions (2026-10-16)
 - Scope: capability + SPC (X-bar/S, EWMA, Nelson 1-4). Lasso/RF, PDF report, live feed out of scope.
