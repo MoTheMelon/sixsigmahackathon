@@ -105,7 +105,7 @@ tasks:
   - id: H-06
     title: Deploy to the course Posit Connect server
     points: "protects the 25 working-tool points - judges must be able to open it"
-    status: in_progress
+    status: done
     owner: "Madeline + claude"
     started_at: "2026-10-21"
     owns: [".github/workflows/", ".github/scripts/", "app/manifest.json", "app/.python-version"]
@@ -120,7 +120,7 @@ tasks:
     definition_of_done: >
       The workflow run is green, and the public URL answers HTTP 200 from a
       logged-out browser and returns the H-03 numbers for one test dataset.
-    result: ""
+    result: "Actions run 39685532636 green; public URL https://connect.systems-apps.com/content/894bc570-5881-4080-a60a-9650c3dafcfb/ answers 200 logged out, yield Cpk 1.675, B-27 abort at layer 139"
 
   - id: H-07
     title: README and function documentation
